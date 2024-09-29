@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'users',
+    'app_study',
 ]
 
 MIDDLEWARE = [
@@ -131,7 +132,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-
 # media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

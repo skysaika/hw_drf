@@ -1,6 +1,6 @@
 from rest_framework import viewsets, generics
 
-from app_study.models import Course
+from app_study.models import Course, Lesson
 from app_study.serializers import CourseSerializer, LessonSerializer
 
 
@@ -15,3 +15,9 @@ class CourseViewSet(viewsets.ModelViewSet):
 class LessonCreateAPIView(generics.CreateAPIView):
     """Представление для создания урока на основе дженериков"""
     serializer_class = LessonSerializer
+
+
+class LessonListAPIView(generics.ListAPIView):
+    """Представление для получения списка уроков на основе дженериков"""
+    serializer_class = LessonSerializer
+    queryset = Lesson.objects.all()

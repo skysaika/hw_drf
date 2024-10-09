@@ -33,3 +33,8 @@ class LessonUpdateAPIView(generics.UpdateAPIView):  # поддерживает �
     """Представление для обновления урока на основе дженериков"""
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
+
+
+class LessonDestroyAPIView(generics.DestroyAPIView):  # поддерживает только DELETE
+    """Представление для удаления урока на основе дженериков"""
+    queryset = Lesson.objects.all()  # здесь только queryset

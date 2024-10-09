@@ -21,3 +21,9 @@ class LessonListAPIView(generics.ListAPIView):
     """Представление для получения списка уроков на основе дженериков"""
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
+
+
+class LessonRetrieveAPIView(generics.RetrieveAPIView):
+    """Представление для получения конкретного урока на основе дженериков"""
+    serializer_class = LessonSerializer
+    queryset = Lesson.objects.all()

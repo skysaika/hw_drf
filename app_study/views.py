@@ -27,3 +27,9 @@ class LessonRetrieveAPIView(generics.RetrieveAPIView):
     """Представление для получения конкретного урока на основе дженериков"""
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
+
+
+class LessonUpdateAPIView(generics.UpdateAPIView):  # поддерживает как  PUT так и PATCH
+    """Представление для обновления урока на основе дженериков"""
+    serializer_class = LessonSerializer
+    queryset = Lesson.objects.all()

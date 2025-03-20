@@ -8,7 +8,7 @@ from app_study.serializers import CourseSerializer, LessonSerializer
 class CourseViewSet(viewsets.ModelViewSet):
     """Представление для курса на основе вьюсета"""
     serializer_class = CourseSerializer
-    queryset = Course.objects.all()
+    queryset = Course.objects.all()  # возвращает все курсы
 
 
 # на основе дженериков по CRUD для Generic

@@ -7,10 +7,10 @@ from app_study.views import CourseViewSet, LessonCreateAPIView, LessonListAPIVie
     LessonUpdateAPIView, LessonDestroyAPIView
 
 app_name = AppStudyConfig.name
-
+# роутер для курсов на основе вьюсета
 router = DefaultRouter()
 router.register(r'courses', CourseViewSet, basename='courses')
-
+# роутер для уроков на основе дженериков
 urlpatterns = [
     path('lesson/create/', LessonCreateAPIView.as_view(), name='lesson-create'),  # путь для создания урока
     path('lesson/list/', LessonListAPIView.as_view(), name='lesson-list'),  # путь для списка уроков

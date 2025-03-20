@@ -23,7 +23,7 @@ class Lesson(models.Model):
     description = models.TextField(verbose_name='описание')
     preview = models.ImageField(upload_to='lessons/', verbose_name='превью урока', **NULLABLE)
     video_link = models.URLField(verbose_name='ссылка на видео', **NULLABLE)
-    # foreign key with course model
+    # foreign key for back access to the course lessons
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons', **NULLABLE)
 
     def __str__(self):

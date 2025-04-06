@@ -1,0 +1,95 @@
+[
+  {
+    "model": "app_study.course",
+    "pk": 1,
+    "fields": {
+      "title": "Git",
+      "preview": "",
+      "description": "Course GIT for beginner"
+    }
+  },
+  {
+    "model": "app_study.course",
+    "pk": 2,
+    "fields": {
+      "title": "Python",
+      "preview": "",
+      "description": "Course Python for beginner"
+    }
+  },
+  {
+    "model": "app_study.course",
+    "pk": 3,
+    "fields": {
+      "title": "Java",
+      "preview": "",
+      "description": "Course Java for beginner"
+    }
+  },
+  {
+    "model": "app_study.lesson",
+    "pk": 1,
+    "fields": {
+      "title": "Git_1",
+      "description": "First Git Lesson",
+      "preview": "",
+      "video_link": null,
+      "course": 1
+    }
+  },
+  {
+    "model": "app_study.lesson",
+    "pk": 2,
+    "fields": {
+      "title": "Git_2",
+      "description": "Second Git Lesson",
+      "preview": "",
+      "video_link": null,
+      "course": 1
+    }
+  },
+  {
+    "model": "app_study.lesson",
+    "pk": 3,
+    "fields": {
+      "title": "Python_1",
+      "description": "First Python Lesson",
+      "preview": "",
+      "video_link": null,
+      "course": 2
+    }
+  },
+  {
+    "model": "app_study.lesson",
+    "pk": 4,
+    "fields": {
+      "title": "Python_2",
+      "description": "Second Python Lesson",
+      "preview": "",
+      "video_link": null,
+      "course": 2
+    }
+  },
+  {
+    "model": "app_study.lesson",
+    "pk": 5,
+    "fields": {
+      "title": "Java_1",
+      "description": "First Java Lesson",
+      "preview": "",
+      "video_link": null,
+      "course": 3
+    }
+  },
+  {
+    "model": "app_study.lesson",
+    "pk": 6,
+    "fields": {
+      "title": "Java_2",
+      "description": "Second Java Lesson",
+      "preview": "",
+      "video_link": null,
+      "course": 3
+    }
+  }
+]

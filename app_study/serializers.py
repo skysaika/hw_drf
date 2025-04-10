@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Course, Lesson
 
+# перенести сериализатор уроков выше в документе, чем сериализатор курсов
 class LessonSerializer(serializers.ModelSerializer):
     """Сериализатор урока"""
     class Meta:
@@ -12,7 +13,6 @@ class CourseSerializer(serializers.ModelSerializer):
     """Сериализатор курса"""
     lesson_count = serializers.SerializerMethodField()  # поле для вывода количества уроков
     lessons = LessonSerializer(many=True, read_only=True)  # поле для вывода уроков
-
 
     class Meta:
         model = Course

@@ -21,5 +21,5 @@ urlpatterns = [
 
     # payment
     path('payment/create', PaymentCreateAPIView.as_view(), name='payment-create'), # путь для создания платежа
-    path('payment/list', PaymentListAPIView.as_view(), name='payment-list'), # путь для списка платежей
+    path('payment/list/', PaymentListAPIView.as_view(), name='payment-list'), # путь для списка платежей
 ] + router.urls

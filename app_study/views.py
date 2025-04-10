@@ -1,5 +1,6 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, generics
+from rest_framework.filters import OrderingFilter
 
 from app_study.models import Course, Lesson, Payment
 from app_study.serializers import CourseSerializer, LessonSerializer, PaymentSerializer
@@ -50,5 +51,7 @@ class PaymentListAPIView(generics.ListAPIView):
     """Представление для получения списка платежей на основе дженериков"""
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ('course', 'lesson', 'payment_method')
+    ordering_fields = ('payment_date',) # ?ordering=payment_date (по возрастанию)/?ordering=-payment_date (по убыванию).
+

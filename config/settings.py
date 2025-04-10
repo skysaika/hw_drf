@@ -44,6 +44,8 @@ INSTALLED_APPS = [
 
     'users',
     'app_study',
+
+    'django_filters'
 ]
 
 MIDDLEWARE = [

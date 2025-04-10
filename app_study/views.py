@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, generics
 
 from app_study.models import Course, Lesson, Payment
@@ -49,3 +50,5 @@ class PaymentListAPIView(generics.ListAPIView):
     """Представление для получения списка платежей на основе дженериков"""
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ('course', 'lesson', 'payment_method')

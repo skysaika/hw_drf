@@ -1,7 +1,7 @@
 from rest_framework import viewsets, generics
 
-from app_study.models import Course, Lesson
-from app_study.serializers import CourseSerializer, LessonSerializer
+from app_study.models import Course, Lesson, Payment
+from app_study.serializers import CourseSerializer, LessonSerializer, PaymentSerializer
 
 
 # на основе вьюсета ModelViewSet
@@ -38,3 +38,14 @@ class LessonUpdateAPIView(generics.UpdateAPIView):  # поддерживает �
 class LessonDestroyAPIView(generics.DestroyAPIView):  # поддерживает только DELETE
     """Представление для удаления урока на основе дженериков"""
     queryset = Lesson.objects.all()  # здесь только queryset
+
+# ViewSet для модели Payment на основе generic
+class PaymentCreateAPIView(generics.CreateAPIView):
+    """Представление для создания платежа на основе дженериков"""
+    serializer_class = PaymentSerializer
+
+
+class PaymentListAPIView(generics.ListAPIView):
+    """Представление для получения списка платежей на основе дженериков"""
+    serializer_class = PaymentSerializer
+    queryset = Payment.objects.all()

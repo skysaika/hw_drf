@@ -18,9 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 
+from django.contrib import admin
+from django.urls import path, include
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('app_study.urls', namespace='app_study')),  # путь до приложения app_study
-    path('users/', include(('users.urls', 'users'), namespace='users')),  # Подключение маршрутов приложения users
-    path('token/', obtain_auth_token, name='api_token_auth'),
+    path('', include('app_study.urls', namespace='app_study')),
+    path('users/', include(('users.urls', 'users'), namespace='users')),
 ]
+
+

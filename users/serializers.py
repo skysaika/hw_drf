@@ -16,6 +16,16 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def get_payments(self, obj):
         return PaymentSerializer(Payment.objects.filter(user=obj), many=True).data
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        if self.context['request'].user != instance:
+            data.pop('payments', None)
+            data.pop('phone', None)
+            data.pop('last_name', None)
+        return data
+
+
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):

@@ -23,7 +23,7 @@ class UserProfileView(generics.RetrieveAPIView):
     def get_permissions(self):
         if self.request.method == 'GET':
             return [IsAuthenticated()]
-        return [IsAuthenticated() & IsOwner()]
+        return [IsAuthenticated(), IsOwner()]
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer

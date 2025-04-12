@@ -41,10 +41,12 @@ class LessonCreateAPIView(generics.CreateAPIView):
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated, NotModerator]
 
-    def post(self, request, *args, **kwargs):
+
+    # сохраняем owner при создании урока
+    def perform_create(self, serializer):
         print(
             f"Создание урока: Пользователь - {self.request.user}, Супер - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
-        return super().post(request, *args, **kwargs)
+        serializer.save(owner=self.request.user)
 
 
 class LessonListAPIView(generics.ListAPIView):
@@ -54,7 +56,7 @@ class LessonListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        print(f"Получение уроков: Пользователь - {self.request.user}, Супер - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
+        print(f"Список уроков: Пользователь - {self.request.user}, Супер - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
         if self.request.user.groups.filter(name='moderators').exists():
             return Lesson.objects.all()
         return Lesson.objects.filter(owner=self.request.user)
@@ -64,7 +66,7 @@ class LessonRetrieveAPIView(generics.RetrieveAPIView):
     """Представление для получения конкретного урока на основе дженериков"""
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwnerOrModerator]
 
     def has_object_permission(self, request, view, obj):
         print(f"Получение урока: Пользователь - {self.request.user}, Супер - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")

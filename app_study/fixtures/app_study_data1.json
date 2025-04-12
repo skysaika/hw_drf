@@ -1,0 +1,326 @@
+[
+{
+  "model": "app_study.course",
+  "pk": 1,
+  "fields": {
+    "title": "Git",
+    "preview": "",
+    "description": "Course GIT for beginner",
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.course",
+  "pk": 2,
+  "fields": {
+    "title": "Python",
+    "preview": "",
+    "description": "Course Python for beginner",
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.course",
+  "pk": 3,
+  "fields": {
+    "title": "Java",
+    "preview": "",
+    "description": "Course Java for beginner",
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.course",
+  "pk": 4,
+  "fields": {
+    "title": "FastApi Course",
+    "preview": "",
+    "description": "Course FastApi for Beginner",
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.course",
+  "pk": 5,
+  "fields": {
+    "title": "Linux",
+    "preview": "",
+    "description": "Course Linux for beginner",
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.course",
+  "pk": 6,
+  "fields": {
+    "title": "DRF",
+    "preview": "",
+    "description": "Very Good course DRF",
+    "owner": null
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 1,
+  "fields": {
+    "title": "Git_1",
+    "description": "First Git Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 1,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 2,
+  "fields": {
+    "title": "Git_2",
+    "description": "Second Git Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 1,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 3,
+  "fields": {
+    "title": "Python_1",
+    "description": "First Python Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 2,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 4,
+  "fields": {
+    "title": "Python_2",
+    "description": "Second Python Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 2,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 5,
+  "fields": {
+    "title": "Java_1",
+    "description": "First Java Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 3,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 6,
+  "fields": {
+    "title": "Java_2",
+    "description": "Second Java Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 3,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 7,
+  "fields": {
+    "title": "FastApi_1",
+    "description": "First FastApi Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 4,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 8,
+  "fields": {
+    "title": "FastApi_2",
+    "description": "Second FastApi Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 4,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 9,
+  "fields": {
+    "title": "FastApi_3",
+    "description": "Next FastApi Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 4,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 10,
+  "fields": {
+    "title": "Linux1",
+    "description": "First Linux Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 5,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 11,
+  "fields": {
+    "title": "Linux2",
+    "description": "Second Linux Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 5,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 12,
+  "fields": {
+    "title": "Linux3",
+    "description": "Next Linux Lesson",
+    "preview": "",
+    "video_link": null,
+    "course": 5,
+    "owner": 6
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 13,
+  "fields": {
+    "title": "DRF1",
+    "description": "First lesson for Begginers",
+    "preview": "",
+    "video_link": null,
+    "course": null,
+    "owner": 6
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 14,
+  "fields": {
+    "title": "DRF2",
+    "description": "Second DRF lesson for Begginers",
+    "preview": "",
+    "video_link": null,
+    "course": 6,
+    "owner": 6
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "payment_date": "2025-04-06T13:17:12.080Z",
+    "course": 1,
+    "lesson": null,
+    "amount": "100.00",
+    "payment_method": "cash"
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "payment_date": "2025-04-06T13:17:12.080Z",
+    "course": 2,
+    "lesson": null,
+    "amount": "150.00",
+    "payment_method": "transfer"
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 3,
+  "fields": {
+    "user": 1,
+    "payment_date": "2025-04-06T13:17:12.080Z",
+    "course": 3,
+    "lesson": null,
+    "amount": "200.00",
+    "payment_method": "cash"
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 4,
+  "fields": {
+    "user": 1,
+    "payment_date": "2025-04-06T13:17:12.080Z",
+    "course": null,
+    "lesson": 1,
+    "amount": "20.00",
+    "payment_method": "transfer"
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 5,
+  "fields": {
+    "user": 1,
+    "payment_date": "2025-04-06T13:17:12.080Z",
+    "course": null,
+    "lesson": 3,
+    "amount": "30.00",
+    "payment_method": "cash"
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 6,
+  "fields": {
+    "user": 1,
+    "payment_date": "2025-04-06T13:17:12.080Z",
+    "course": null,
+    "lesson": 5,
+    "amount": "40.00",
+    "payment_method": "transfer"
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "payment_date": "2025-04-10T10:28:04.750Z",
+    "course": 1,
+    "lesson": null,
+    "amount": "1000.00",
+    "payment_method": "cash"
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 8,
+  "fields": {
+    "user": 1,
+    "payment_date": "2025-04-10T11:03:28.843Z",
+    "course": null,
+    "lesson": 1,
+    "amount": "100.00",
+    "payment_method": "transfer"
+  }
+}
+]

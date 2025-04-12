@@ -1,0 +1,91 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$3ks1qFDQus0yXViCpwcdXA$SewJEW+sR4f48LfVVn2SDJ2Ul76fbThjRx0wmhUqfN4=",
+    "last_login": "2025-04-12T16:17:31Z",
+    "is_superuser": true,
+    "first_name": "Admin",
+    "last_name": "SkyPro",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-04-06T13:16:36Z",
+    "email": "admin@sky.pro",
+    "phone": null,
+    "city": null,
+    "avatar": "",
+    "groups": [
+      1
+    ],
+    "user_permissions": [
+      26,
+      28,
+      30,
+      32
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$04aamryVBFkY2AsIftGq0P$xhK1wCDTUoc2fuN8k3GmvESHQp0QUTJASq5WlYwOc8s=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "user1",
+    "last_name": "lastname1",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-12T13:48:19Z",
+    "email": "example@mail.com",
+    "phone": null,
+    "city": null,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$ai6NPDuw0xFOGEqbapjO2z$yYxUut28S3scWXdSuTO7PeTnTxvnelkFM44tCRzVzhI=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "user2",
+    "last_name": "lastname2",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-12T14:46:44Z",
+    "email": "example2@mail.com",
+    "phone": null,
+    "city": null,
+    "avatar": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$BPccbqmAJ9T5fKxQ9fqxw0$l9wzsvvj4PoQtOHhVwnAmdXbWaeO4yt3N/aAhvMIA1s=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-04-12T16:16:49Z",
+    "email": "moderator@example.com",
+    "phone": null,
+    "city": null,
+    "avatar": "",
+    "groups": [
+      1
+    ],
+    "user_permissions": []
+  }
+}
+]

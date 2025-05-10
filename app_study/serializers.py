@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Course, Lesson, Payment
+from .validators import YouTubeOnlyURLValidator
 
 
 # перенести сериализатор уроков выше в документе, чем сериализатор курсов
@@ -8,6 +9,7 @@ class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
         fields = '__all__'
+        validators = [YouTubeOnlyURLValidator(field='video_link')]
 
 
 class CourseSerializer(serializers.ModelSerializer):

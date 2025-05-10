@@ -4,6 +4,7 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import IsAuthenticated, BasePermission
 
 from app_study.models import Course, Lesson, Payment
+from app_study.paginators import CoursePaginator, LessonPaginator, PaymentPaginator
 from app_study.permissions import IsModerator, IsOwner, NotModerator, IsOwnerOrModerator
 from app_study.serializers import CourseSerializer, LessonSerializer, PaymentSerializer
 
@@ -13,6 +14,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     """Представление для курса на основе вьюсета"""
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
+    pagination_class = CoursePaginator
 
     def get_queryset(self):
         print(f"Получение курсов: Пользователь - {self.request.user}, Суперпользователь - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
@@ -54,6 +56,7 @@ class LessonListAPIView(generics.ListAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
     permission_classes = [IsAuthenticated]
+    pagination_class = LessonPaginator
 
     def get_queryset(self):
         print(f"Список уроков: Пользователь - {self.request.user}, Супер - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
@@ -122,6 +125,7 @@ class PaymentListAPIView(generics.ListAPIView):
     filterset_fields = ('course', 'lesson', 'payment_method')
     ordering_fields = ('payment_date',) # ?ordering=payment_date (по возрастанию)/?ordering=-payment_date (по убыванию).
     permission_classes = [IsAuthenticated]
+    pagination_class = PaymentPaginator
 
     def get_queryset(self):
         print(

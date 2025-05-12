@@ -60,3 +60,16 @@ class Payment(models.Model):
         verbose_name = 'платеж'
         verbose_name_plural = 'платежи'
 
+class CourseSubscription(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='пользователь')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='курс')
+    subscribed_at = models.DateTimeField(auto_now_add=True, verbose_name='дата подписки')
+
+    class Meta:
+        verbose_name = 'подписка'
+        verbose_name_plural = 'подписки'
+        unique_together = ('user', 'course')  # чтобы пользователь не мог подписаться на один курс дважды
+
+    def __str__(self):
+        return f'{self.user} подписан на {self.course}'
+

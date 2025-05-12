@@ -182,8 +182,10 @@ class LessonTestCase(APITestCase):
         url = reverse('app_study:course-subscribe', args=[self.course.id])
         response = self.client.post(url)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # Проверяем, что пользователь подписан
-        self.assertTrue(self.course.subscribers.filter(id=self.user.id).exists())
+
+        # Проверяем, что подписка создана в промежуточной модели
+        self.assertTrue(CourseSubscription.objects.filter(user=self.user, course=self.course).exists())
+        print(response.status_code, response.json())
 
     def test_unsubscribe_from_course(self):
         # Создаём подписку

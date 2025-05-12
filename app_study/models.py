@@ -62,7 +62,7 @@ class Payment(models.Model):
 
 class CourseSubscription(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='пользователь')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='курс')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='курс', related_name='subscribers')
     subscribed_at = models.DateTimeField(auto_now_add=True, verbose_name='дата подписки')
 
     class Meta:

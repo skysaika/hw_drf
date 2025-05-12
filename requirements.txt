@@ -93,3 +93,8 @@ wheel==0.42.0
 xdg==5
 xkit==0.0.0
 yt-dlp==2024.4.9
+
+Django~=4.2.7
+djangorestframework~=3.16.0
+python-dotenv~=1.1.0
+django-filter~=25.1

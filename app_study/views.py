@@ -15,14 +15,14 @@ from app_study.serializers import CourseSerializer, LessonSerializer, PaymentSer
 class CourseViewSet(viewsets.ModelViewSet):
     """Представление для курса на основе вьюсета"""
     serializer_class = CourseSerializer
-    queryset = Course.objects.all()
+    queryset = Course.objects.all().order_by('id')  # <--- добавлено order_by
     pagination_class = CoursePaginator
 
     def get_queryset(self):
         print(f"Получение курсов: Пользователь - {self.request.user}, Суперпользователь - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
         if self.request.user.is_superuser or self.request.user.groups.filter(name='moderators').exists():
-            return Course.objects.all()
-        return Course.objects.filter(owner=self.request.user)
+            return Course.objects.all().order_by('id')  # <--- добавлено order_by
+        return Course.objects.filter(owner=self.request.user).order_by('id')  # <--- добавлено order_by
 
     def get_permissions(self):
         print(f"Права доступа для курса: {self.action}")
@@ -58,15 +58,15 @@ class LessonCreateAPIView(generics.CreateAPIView):
 class LessonListAPIView(generics.ListAPIView):
     """Представление для получения списка уроков на основе дженериков"""
     serializer_class = LessonSerializer
-    queryset = Lesson.objects.all()
+    queryset = Lesson.objects.all().order_by('id')  # <--- добавлено order_by
     permission_classes = [IsAuthenticated]
     pagination_class = LessonPaginator
 
     def get_queryset(self):
         print(f"Список уроков: Пользователь - {self.request.user}, Супер - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
         if self.request.user.groups.filter(name='moderators').exists():
-            return Lesson.objects.all()
-        return Lesson.objects.filter(owner=self.request.user)
+            return Lesson.objects.all().order_by('id')  # <--- добавлено order_by
+        return Lesson.objects.filter(owner=self.request.user).order_by('id')  # <--- добавлено order_by
 
 
 class LessonRetrieveAPIView(generics.RetrieveAPIView):
@@ -124,7 +124,7 @@ class PaymentCreateAPIView(generics.CreateAPIView):
 class PaymentListAPIView(generics.ListAPIView):
     """Представление для получения списка платежей на основе дженериков"""
     serializer_class = PaymentSerializer
-    queryset = Payment.objects.all()
+    queryset = Payment.objects.all().order_by('id')  # <--- добавлено order_by
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ('course', 'lesson', 'payment_method')
     ordering_fields = ('payment_date',) # ?ordering=payment_date (по возрастанию)/?ordering=-payment_date (по убыванию).

@@ -42,7 +42,8 @@ class PaymentSerializer(serializers.ModelSerializer):
         model = Payment
         fields = '__all__'
 
-class SubscriptionSerializer(serializers.ModelSerializer):
+class CourseSubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseSubscription
         fields = '__all__'
+        read_only_fields = ('user', 'subscribed_at')

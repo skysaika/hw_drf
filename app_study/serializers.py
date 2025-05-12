@@ -15,14 +15,23 @@ class LessonSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     """Сериализатор курса"""
     lesson_count = serializers.SerializerMethodField()  # поле для вывода количества уроков
-    lessons = LessonSerializer(many=True, read_only=True)  # поле для вывода уроков
+    lessons = LessonSerializer(many=True, read_only=True)  # поле для вывода
+    is_subscribed = serializers.SerializerMethodField()  # поле подписки на курс
 
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = '__all__'  # можно явно перечислить поля, добавив is_subscribed
+        # fields = ['id', 'title', 'preview', 'description', 'owner', 'lesson_count', 'lessons', 'is_subscribed']
 
     def get_lesson_count(self, obj):
         return obj.lessons.count()  # возвращает количество уроков
+
+    def get_is_subscribed(self, obj):
+        user = self.context.get('request').user  # получаем текущего пользователя
+        if user.is_anonymous:
+            return False  # если пользователь не аутентифицирован, считаем, что подписки нет
+        # проверяем, есть ли запись подписки для данного пользователя и данного курса
+        return CourseSubscription.objects.filter(user=user, course=obj).exists()
 
 
 class PaymentSerializer(serializers.ModelSerializer):

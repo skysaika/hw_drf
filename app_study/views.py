@@ -1,12 +1,14 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
 from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import IsAuthenticated, BasePermission
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from app_study.models import Course, Lesson, Payment
+from app_study.models import Course, Lesson, Payment, CourseSubscription
 from app_study.paginators import CoursePaginator, LessonPaginator, PaymentPaginator
 from app_study.permissions import IsModerator, IsOwner, NotModerator, IsOwnerOrModerator
-from app_study.serializers import CourseSerializer, LessonSerializer, PaymentSerializer
+from app_study.serializers import CourseSerializer, LessonSerializer, PaymentSerializer, CourseSubscriptionSerializer
 
 
 # на основе вьюсета ModelViewSet
@@ -35,6 +37,8 @@ class CourseViewSet(viewsets.ModelViewSet):
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
+
+
 
 
 # на основе дженериков по CRUD для Generic
@@ -131,3 +135,33 @@ class PaymentListAPIView(generics.ListAPIView):
         print(
             f"Получение платежей: Пользователь - {self.request.user}, Супер - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
         return super().get_queryset()
+
+
+class CourseSubscriptionCreateAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, course_id):
+        user = request.user
+        try:
+            course = Course.objects.get(id=course_id)
+        except Course.DoesNotExist:
+            return Response({'detail': 'Курс не найден'}, status=status.HTTP_404_NOT_FOUND)
+
+        subscription, created = CourseSubscription.objects.get_or_create(user=user, course=course)
+        if created:
+            serializer = CourseSubscriptionSerializer(subscription)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response({'detail': 'Вы уже подписаны на этот курс'}, status=status.HTTP_200_OK)
+
+class CourseSubscriptionDeleteAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, course_id):
+        user = request.user
+        try:
+            subscription = CourseSubscription.objects.get(user=user, course_id=course_id)
+            subscription.delete()
+            return Response({'detail': 'Подписка удалена'}, status=status.HTTP_204_NO_CONTENT)
+        except CourseSubscription.DoesNotExist:
+            return Response({'detail': 'Подписка не найдена'}, status=status.HTTP_404_NOT_FOUND)

@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from .models import Course, Lesson, Payment, CourseSubscription
+from .services import create_payment_intent
 from .validators import YouTubeOnlyURLValidator
 
 
@@ -39,10 +40,10 @@ class CourseSerializer(serializers.ModelSerializer):
 class PaymentSerializer(serializers.ModelSerializer):
     """Сериализатор платежа"""
 
-
     class Meta:
         model = Payment
         fields = '__all__'
+
 
 class CourseSubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -51,11 +52,19 @@ class CourseSubscriptionSerializer(serializers.ModelSerializer):
         read_only_fields = ('user', 'subscribed_at')
 
 
-class PaymentsCreateSerializer(ModelSerializer):
-    """ Сериализатор создания платежа для курса"""
+class StripePaymentsCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = ("course",)
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+        course = validated_data['course']
+        intent = create_payment_intent(course, user)
+        return {
+            'client_secret': intent.client_secret,
+            'payment_intent_id': intent.id,
+        }
 
 
 

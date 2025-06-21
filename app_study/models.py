@@ -11,6 +11,7 @@ class Course(models.Model):
     description = models.TextField(verbose_name='описание')
     # owner
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    price = models.PositiveIntegerField(default=0, verbose_name='цена курса')
 
 
     def __str__(self):
@@ -31,7 +32,7 @@ class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons', **NULLABLE)
     # owner
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
-    price = models.PositiveIntegerField(default=0, verbose_name='цена курса')
+
 
 
     def __str__(self):

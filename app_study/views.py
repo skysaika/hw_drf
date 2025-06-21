@@ -1,3 +1,6 @@
+from decimal import Decimal
+from locale import currency
+
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, generics, status
 from rest_framework.filters import OrderingFilter
@@ -9,6 +12,7 @@ from app_study.models import Course, Lesson, Payment, CourseSubscription
 from app_study.paginators import CoursePaginator, LessonPaginator, PaymentPaginator
 from app_study.permissions import IsModerator, IsOwner, NotModerator, IsOwnerOrModerator
 from app_study.serializers import CourseSerializer, LessonSerializer, PaymentSerializer, CourseSubscriptionSerializer
+from app_study.services import create_payment_intent, retrieve_payment_intent
 
 
 # на основе вьюсета ModelViewSet
@@ -165,3 +169,41 @@ class CourseSubscriptionDeleteAPIView(APIView):
             return Response({'detail': 'Подписка удалена'}, status=status.HTTP_204_NO_CONTENT)
         except CourseSubscription.DoesNotExist:
             return Response({'detail': 'Подписка не найдена'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class StripePaymentIntentCreateAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, course_id):
+        try:
+            course = Course.objects.get(id=course_id)
+        except Course.DoesNotExist:
+            return Response({'detail': 'Курс не найден'}, status=status.HTTP_404_NOT_FOUND)
+        # Создаем платежв Stripe
+        intent = create_payment_intent(course, request.user)
+
+        # Сохраняем платеж в базу
+        Payment.objects.create(
+            user=request.user,
+            course=course,
+            amount=course.price,
+            payment_method='transfer',
+        )
+
+        return Response({'client_secret': intent.client_secret}, status=status.HTTP_200_OK)
+
+
+class StripePaymentStatusRetrieveAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, payment_intent_id):
+        try:
+            intent = retrieve_payment_intent(payment_intent_id)
+        except Exception as e:
+            return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({
+            'status': intent.status,
+            'amount': intent.amount,
+            'currency': intent.currency,
+        }, status=status.HTTP_200_OK)

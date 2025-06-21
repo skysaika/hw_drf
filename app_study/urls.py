@@ -5,7 +5,8 @@ from rest_framework.routers import DefaultRouter
 
 from app_study.views import CourseViewSet, LessonCreateAPIView, LessonListAPIView, LessonRetrieveAPIView, \
     LessonUpdateAPIView, LessonDestroyAPIView, PaymentCreateAPIView, PaymentListAPIView, \
-    CourseSubscriptionCreateAPIView, CourseSubscriptionDeleteAPIView
+    CourseSubscriptionCreateAPIView, CourseSubscriptionDeleteAPIView, StripePaymentIntentCreateAPIView, \
+    StripePaymentStatusRetrieveAPIView
 
 app_name = AppStudyConfig.name
 # роутер для курсов на основе вьюсета
@@ -27,4 +28,8 @@ urlpatterns = [
     # coursesubscription
     path('courses/<int:course_id>/subscribe/', CourseSubscriptionCreateAPIView.as_view(), name='course-subscribe'),
     path('courses/<int:course_id>/unsubscribe/', CourseSubscriptionDeleteAPIView.as_view(), name='course-unsubscribe'),
+
+    # stripepaymentsintents
+    path('stripe/<int:course_id>/create-payment-intent/', StripePaymentIntentCreateAPIView.as_view(), name='stripe-create-payment-intent'),
+    path('stripe/<str:payment_intent_id>/payment-status/', StripePaymentStatusRetrieveAPIView.as_view(), name='stripe-payment-status'),
 ] + router.urls

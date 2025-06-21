@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
+
 from .models import Course, Lesson, Payment, CourseSubscription
 from .validators import YouTubeOnlyURLValidator
 
@@ -47,3 +49,13 @@ class CourseSubscriptionSerializer(serializers.ModelSerializer):
         model = CourseSubscription
         fields = '__all__'
         read_only_fields = ('user', 'subscribed_at')
+
+
+class PaymentsCreateSerializer(ModelSerializer):
+    """ Сериализатор создания платежа для курса"""
+    class Meta:
+        model = Payment
+        fields = ("course",)
+
+
+

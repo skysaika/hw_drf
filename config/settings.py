@@ -17,6 +17,13 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Получаем ключи Stripe из переменных окружения
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY', '')
+
+# Проверка, чтобы убедиться, что ключи есть
+if not STRIPE_SECRET_KEY or not STRIPE_PUBLISHABLE_KEY:
+    raise ValueError("Stripe API keys are not set in environment variables!")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/

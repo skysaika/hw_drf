@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
+
+from celery.schedules import crontab
 from dotenv import load_dotenv
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -192,3 +194,12 @@ CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0' # Redis по молчанию р�
 # URL-адрес брокера результатов, также Redis
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
 
+CELERY_BEAT_SCHEDULE = {
+    'deactivate-inactive-users': {
+        'task': 'users.tasks.deactivate_inactive_users',
+        'schedule': crontab(hour=0, minute=0),
+    },
+}
+
+# Печать содержимого письма в консоль:
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

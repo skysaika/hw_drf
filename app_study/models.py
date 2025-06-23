@@ -34,7 +34,11 @@ class Lesson(models.Model):
     # owner
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
 
-
+    def save(self, *args, **kwargs):
+        is_update = self.pk is not None
+        super().save(*args, **kwargs)
+        if is_update and self.course:
+            self.course.save()
 
     def __str__(self):
         return f'{self.title}'
@@ -42,6 +46,8 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = 'урок'
         verbose_name_plural = 'уроки'
+
+
 
 # model Payment
 class Payment(models.Model):

@@ -142,6 +142,7 @@ class PaymentListAPIView(generics.ListAPIView):
 
 
 class CourseSubscriptionCreateAPIView(APIView):
+    """Представление для оформления подписки пользователя на курс."""
     permission_classes = [IsAuthenticated]
 
     def post(self, request, course_id):
@@ -159,6 +160,7 @@ class CourseSubscriptionCreateAPIView(APIView):
             return Response({'detail': 'Вы уже подписаны на этот курс'}, status=status.HTTP_200_OK)
 
 class CourseSubscriptionDeleteAPIView(APIView):
+    """Представление для отмены подписки пользователя на курс."""
     permission_classes = [IsAuthenticated]
 
     def delete(self, request, course_id):
@@ -172,6 +174,7 @@ class CourseSubscriptionDeleteAPIView(APIView):
 
 
 class StripePaymentIntentCreateAPIView(APIView):
+    """Представление для создания платежа для курса через Stripe."""
     permission_classes = [IsAuthenticated]
 
     def post(self, request, course_id):
@@ -194,6 +197,7 @@ class StripePaymentIntentCreateAPIView(APIView):
 
 
 class StripePaymentStatusRetrieveAPIView(APIView):
+    """Представление для получения статуса платежа через Stripe."""
     permission_classes = [IsAuthenticated]
 
     def get(self, request, payment_intent_id):

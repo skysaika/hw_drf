@@ -12,6 +12,7 @@ class Course(models.Model):
     # owner
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     price = models.PositiveIntegerField(default=0, verbose_name='цена курса')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='дата обновления')
 
 
     def __str__(self):

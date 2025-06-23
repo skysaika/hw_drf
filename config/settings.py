@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'drf_yasg',
+
     'rest_framework',
     'rest_framework_simplejwt',
 
@@ -54,8 +56,9 @@ INSTALLED_APPS = [
     'app_study',
 
     'django_filters',
-    'drf_yasg',
+
     'corsheaders',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -182,3 +185,10 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://read-and-write.example.com",
 ]
+
+# Настройки для Celery
+# URL-адрес брокера сообщений
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0' # Redis по молчанию работает на порту 6379
+# URL-адрес брокера результатов, также Redis
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+

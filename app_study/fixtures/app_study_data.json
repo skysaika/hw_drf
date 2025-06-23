@@ -1,198 +1,224 @@
 [
-  {
-	"model" : "app_study.course",
-	"pk"    : 1,
-	"fields": {
-	  "title"      : "Git",
-	  "preview"    : "",
-	  "description": "Course GIT for beginner"
-	}
-  },
-  {
-	"model" : "app_study.course",
-	"pk"    : 2,
-	"fields": {
-	  "title"      : "Python",
-	  "preview"    : "",
-	  "description": "Course Python for beginner"
-	}
-  },
-  {
-	"model" : "app_study.course",
-	"pk"    : 3,
-	"fields": {
-	  "title"      : "Java",
-	  "preview"    : "",
-	  "description": "Course Java for beginner"
-	}
-  },
-  {
-	"model" : "app_study.course",
-	"pk"    : 4,
-	"fields": {
-	  "title"      : "FastApi Course",
-	  "preview"    : "",
-	  "description": "Course FastApi for Beginner"
-	}
-  },
-  {
-	"model" : "app_study.lesson",
-	"pk"    : 1,
-	"fields": {
-	  "title"      : "Git_1",
-	  "description": "First Git Lesson",
-	  "preview"    : "",
-	  "video_link" : null,
-	  "course"     : 1
-	}
-  },
-  {
-	"model" : "app_study.lesson",
-	"pk"    : 2,
-	"fields": {
-	  "title"      : "Git_2",
-	  "description": "Second Git Lesson",
-	  "preview"    : "",
-	  "video_link" : null,
-	  "course"     : 1
-	}
-  },
-  {
-	"model" : "app_study.lesson",
-	"pk"    : 3,
-	"fields": {
-	  "title"      : "Python_1",
-	  "description": "First Python Lesson",
-	  "preview"    : "",
-	  "video_link" : null,
-	  "course"     : 2
-	}
-  },
-  {
-	"model" : "app_study.lesson",
-	"pk"    : 4,
-	"fields": {
-	  "title"      : "Python_2",
-	  "description": "Second Python Lesson",
-	  "preview"    : "",
-	  "video_link" : null,
-	  "course"     : 2
-	}
-  },
-  {
-	"model" : "app_study.lesson",
-	"pk"    : 5,
-	"fields": {
-	  "title"      : "Java_1",
-	  "description": "First Java Lesson",
-	  "preview"    : "",
-	  "video_link" : null,
-	  "course"     : 3
-	}
-  },
-  {
-	"model" : "app_study.lesson",
-	"pk"    : 6,
-	"fields": {
-	  "title"      : "Java_2",
-	  "description": "Second Java Lesson",
-	  "preview"    : "",
-	  "video_link" : null,
-	  "course"     : 3
-	}
-  },
-  {
-	"model" : "app_study.lesson",
-	"pk"    : 7,
-	"fields": {
-	  "title"      : "FastApi_1",
-	  "description": "First FastApi Lesson",
-	  "preview"    : "",
-	  "video_link" : null,
-	  "course"     : 4
-	}
-  },
-  {
-	"model" : "app_study.lesson",
-	"pk"    : 8,
-	"fields": {
-	  "title"      : "FastApi_2",
-	  "description": "Second FastApi Lesson",
-	  "preview"    : "",
-	  "video_link" : null,
-	  "course"     : 4
-	}
-  },
-  {
-	"model" : "app_study.payment",
-	"pk"    : 1,
-	"fields": {
-	  "user"          : 1,
-	  "payment_date"  : "2025-04-06T13:17:12.080Z",
-	  "course"        : 1,
-	  "lesson"        : null,
-	  "amount"        : "100.00",
-	  "payment_method": "cash"
-	}
-  },
-  {
-	"model" : "app_study.payment",
-	"pk"    : 2,
-	"fields": {
-	  "user"          : 1,
-	  "payment_date"  : "2025-04-06T13:17:12.080Z",
-	  "course"        : 2,
-	  "lesson"        : null,
-	  "amount"        : "150.00",
-	  "payment_method": "transfer"
-	}
-  },
-  {
-	"model" : "app_study.payment",
-	"pk"    : 3,
-	"fields": {
-	  "user"          : 1,
-	  "payment_date"  : "2025-04-06T13:17:12.080Z",
-	  "course"        : 3,
-	  "lesson"        : null,
-	  "amount"        : "200.00",
-	  "payment_method": "cash"
-	}
-  },
-  {
-	"model" : "app_study.payment",
-	"pk"    : 4,
-	"fields": {
-	  "user"          : 1,
-	  "payment_date"  : "2025-04-06T13:17:12.080Z",
-	  "course"        : null,
-	  "lesson"        : 1,
-	  "amount"        : "20.00",
-	  "payment_method": "transfer"
-	}
-  },
-  {
-	"model" : "app_study.payment",
-	"pk"    : 5,
-	"fields": {
-	  "user"          : 1,
-	  "payment_date"  : "2025-04-06T13:17:12.080Z",
-	  "course"        : null,
-	  "lesson"        : 3,
-	  "amount"        : "30.00",
-	  "payment_method": "cash"
-	}
-  },
-  {
-	"model" : "app_study.payment",
-	"pk"    : 6,
-	"fields": {
-	  "user"          : 1,
-	  "payment_date"  : "2025-04-06T13:17:12.080Z",
-	  "course"        : null,
-	  "lesson"        : 5,
-	  "amount"        : "40.00",
-	  "payment_method": "transfer"
-	}
+{
+  "model": "app_study.course",
+  "pk": 7,
+  "fields": {
+    "title": "Git Course5",
+    "preview": "",
+    "description": "Git for  not begginners",
+    "owner": null,
+    "price": 10,
+    "updated_at": "2025-06-23T09:50:40.976Z"
   }
+},
+{
+  "model": "app_study.course",
+  "pk": 8,
+  "fields": {
+    "title": "Python Course from admin",
+    "preview": "",
+    "description": "Python for  not begginners",
+    "owner": null,
+    "price": 10,
+    "updated_at": "2025-06-23T09:50:40.976Z"
+  }
+},
+{
+  "model": "app_study.course",
+  "pk": 9,
+  "fields": {
+    "title": "FastAPI Course from admin",
+    "preview": "",
+    "description": "FastAPI for  not begginners",
+    "owner": null,
+    "price": 10,
+    "updated_at": "2025-06-23T09:50:40.976Z"
+  }
+},
+{
+  "model": "app_study.course",
+  "pk": 10,
+  "fields": {
+    "title": "Test Course",
+    "preview": "",
+    "description": "desc",
+    "owner": null,
+    "price": 100,
+    "updated_at": "2025-06-23T10:44:22.025Z"
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 15,
+  "fields": {
+    "title": "DRF2",
+    "description": "Second DRF lesson for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/DRF2",
+    "course": null,
+    "owner": 3
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 16,
+  "fields": {
+    "title": "Git Lesson1",
+    "description": "Second Git lesson for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/Git1",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 17,
+  "fields": {
+    "title": "Git Lesson2",
+    "description": "Second Git lesson for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/Git2",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 18,
+  "fields": {
+    "title": "Git Lesson3",
+    "description": "Fird Git lesson for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/Git3",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 19,
+  "fields": {
+    "title": "Python Lesson1",
+    "description": "Python lesson 1 for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/Python1",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 20,
+  "fields": {
+    "title": "Python Lesson1",
+    "description": "Python lesson 1 for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/Python1",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 21,
+  "fields": {
+    "title": "Python Lesson2",
+    "description": "Python lesson 2 for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/Python2",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 22,
+  "fields": {
+    "title": "Python Lesson3",
+    "description": "Python lesson 3 for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/Python3",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 23,
+  "fields": {
+    "title": "FastAPI Lesson1",
+    "description": "FastAPI lesson 1 for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/FastAPI1",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 24,
+  "fields": {
+    "title": "FastAPI Lesson2",
+    "description": "FastAPI lesson 2 for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/FastAPI2",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.lesson",
+  "pk": 25,
+  "fields": {
+    "title": "FastAPI Lesson3",
+    "description": "FastAPI lesson 3 for Begginers",
+    "preview": "",
+    "video_link": "https://youtube.com/FastAPI3",
+    "course": null,
+    "owner": 1
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 9,
+  "fields": {
+    "user": 3,
+    "payment_date": "2025-06-21T19:31:31.666Z",
+    "course": 7,
+    "lesson": null,
+    "amount": "10.00",
+    "payment_method": "transfer"
+  }
+},
+{
+  "model": "app_study.payment",
+  "pk": 10,
+  "fields": {
+    "user": 3,
+    "payment_date": "2025-06-21T19:31:33.551Z",
+    "course": 7,
+    "lesson": null,
+    "amount": "10.00",
+    "payment_method": "transfer"
+  }
+},
+{
+  "model": "app_study.coursesubscription",
+  "pk": 1,
+  "fields": {
+    "user": 9,
+    "course": 10,
+    "subscribed_at": "2025-06-23T10:36:20.094Z"
+  }
+},
+{
+  "model": "app_study.coursesubscription",
+  "pk": 2,
+  "fields": {
+    "user": 10,
+    "course": 10,
+    "subscribed_at": "2025-06-23T10:37:08.054Z"
+  }
+}
 ]

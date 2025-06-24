@@ -41,9 +41,6 @@ class Lesson(models.Model):
         if is_update and self.course:
             self.course.save()
 
-            from app_study.tasks import send_course_update_emails
-            print(f'Calling send_course_update_emails for course ID: {self.course.id}')
-            send_course_update_emails.delay(self.course.id)
 
     def __str__(self):
         return f'{self.title}'

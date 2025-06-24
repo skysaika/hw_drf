@@ -85,7 +85,9 @@ class LessonRetrieveAPIView(generics.RetrieveAPIView):
 
 
 
-class LessonUpdateAPIView(generics.UpdateAPIView):  # поддерживает как  PUT так и PATCH
+from app_study.tasks import send_course_update_emails  # импорт задачи
+
+class LessonUpdateAPIView(generics.UpdateAPIView):  # поддерживает как PUT, так и PATCH
     """Представление для обновления урока на основе дженериков"""
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
@@ -93,13 +95,28 @@ class LessonUpdateAPIView(generics.UpdateAPIView):  # поддерживает �
 
     def patch(self, request, *args, **kwargs):
         print(
-            f"Обновление урока: Пользователь - {self.request.user}, Супер - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
-        return super().patch(request, *args, **kwargs)
+            f"Обновление урока: Пользователь - {request.user}, Супер - {request.user.is_superuser}, Модератор - {request.user.groups.filter(name='moderators').exists()}"
+        )
+        response = super().patch(request, *args, **kwargs)
+
+        lesson = self.get_object()
+        if lesson.course:
+            print(f'Calling send_course_update_emails for course ID: {lesson.course.id}')
+            send_course_update_emails.delay(lesson.course.id)
+
+        return response
 
     def put(self, request, *args, **kwargs):
         print(
-            f"Обновление урока: Пользователь - {self.request.user}, Супер - {self.request.user.is_superuser}, Модератор - {self.request.user.groups.filter(name='moderators').exists()}")
-        return super().put(request, *args, **kwargs)
+            f"Обновление урока: Пользователь - {request.user}, Супер - {request.user.is_superuser}, Модератор - {request.user.groups.filter(name='moderators').exists()}"
+        )
+        response = super().put(request, *args, **kwargs)
+
+        lesson = self.get_object()
+        if lesson.course:
+            print(f'Calling send_course_update_emails for course ID: {lesson.course.id}')
+            send_course_update_emails.delay(lesson.course.id)
+
 
 
 class LessonDestroyAPIView(generics.DestroyAPIView):  # поддерживает только DELETE

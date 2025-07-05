@@ -4,6 +4,7 @@ import os
 
 from users.models import User
 
+load_dotenv()
 
 class Command(BaseCommand):
     help = "Создать нового суперпользователя"

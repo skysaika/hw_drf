@@ -1,29 +1,44 @@
 Проект hw_drf
-
 Установка
-Клонируйте репозиторий на свой компьютер:
-git@github.com:skysaika/hw_drf.git
 
-Перейдите в директорию проекта:
-- cd hw_drf
-- 
-Создайте и активируйте виртуальное окружение:
-- python -m venv venv
-- source .venv/bin/activate
+Клонируем репозиторий:
+git clone git@github.com:skysaika/hw_drf.git
+cd hw_drf
 
-Установите зависимости из файла requirements.txt:
-- pip install -r requirements.txt
+Создаём и активируем виртуальное окружение:
+python -m venv .venv
+source .venv/bin/activate
 
-Настройка:
-- Создайте файл .env в корневой директории проекта и скопируйте в него содержимое из .env.sample. 
-- Заполните необходимые параметры, параметры подключения к базе данных и другие.
+Устанавливаем зависимости:
+pip install -r requirements.txt
+Создаём файл .env в корне проекта на основе .env.example и заполняем параметры (секретные ключи, настройки базы и т.д.)
 
-Запуск:
-1) Запустите сервер Django:
-    - python manage.py runserver
-2) Запустите Celery worker для обработки задач:
-    - celery -A config worker -l info
-3) Запустите Celery beat для планирования задач:
-    - celery -A config beat -l info
-4) Откройте браузер и перейдите по адресу http://localhost:8000/ для проверки работоспособности сервера.
-5) 
+Запуск без Docker (локально)
+Запускаем миграции:
+python manage.py migrate
+
+Запускаем сервер Django:
+python manage.py runserver
+
+Запускаем Celery worker (обработка фоновых задач):
+celery -A config worker -l info
+
+Запускаем Celery beat (планировщик периодических задач):
+celery -A config beat -l info
+
+Открываем в браузере:
+http://localhost:8000/
+
+Запуск с Docker и Docker Compose
+Останавливаем локальный Redis (если он запущен), чтобы порт 6379 не был занят:
+sudo systemctl stop redis
+
+Запускаем проект с пересборкой образов:
+sudo docker compose up --build
+
+После успешного запуска сервисов проект будет доступен по адресу:
+http://localhost:8000/
+
+Чтобы создать суперпользователя, выполните:
+sudo docker compose exec web python manage.py createsuperuser
+

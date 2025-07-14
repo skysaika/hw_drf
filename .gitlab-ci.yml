@@ -1,0 +1,13 @@
+#in pythonanywhere python3.10, in local python 3.12
+# I couldn't create a profile in Gitlab, this file is only created locally
+image: python:3.10
+
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+    - python manage.py test
